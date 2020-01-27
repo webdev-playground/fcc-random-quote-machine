@@ -91,8 +91,14 @@ class QuoteBox extends React.Component {
   render() {
     return (
       <div id="quote-box">
-        <Quote />
-        <Actions />
+        <Quote
+          author={this.state.currQuote.author}
+          text={this.state.currQuote.text}
+        />
+        <Actions
+          author={this.state.currQuote.author}
+          text={this.state.currQuote.text}
+        />
       </div>
     );
   }
@@ -100,10 +106,13 @@ class QuoteBox extends React.Component {
 
 class Quote extends React.Component {
   render() {
+    const text = this.props.text || '';
+    const author = this.props.author || '';
+
     return (
       <div id="quote">
-        <div id="text">Text</div>
-        <div id="author">Author</div>
+        <div id="text">{text}</div>
+        <div id="author">{author}</div>
       </div>
     );
   }
@@ -111,8 +120,10 @@ class Quote extends React.Component {
 
 class Actions extends React.Component {
   render() {
-    const tweetLink =
-      'https://twitter.com/intent/tweet?text="We become what we think about." Earl Nightingale';
+    const author = this.props.author || '';
+    const text = this.props.text || '';
+    const tweetLink = `https://twitter.com/intent/tweet?text="${text}" ${author}`;
+
     return (
       <div id="actions">
         <div id="tweet">
