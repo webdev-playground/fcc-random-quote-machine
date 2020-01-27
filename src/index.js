@@ -89,7 +89,22 @@ class QuoteBox extends React.Component {
   }
 
   render() {
-    return <div id="quote-box">Hello, world!</div>;
+    return (
+      <div id="quote-box">
+        <Quote />
+      </div>
+    );
+  }
+}
+
+class Quote extends React.Component {
+  render() {
+    return (
+      <div id="quote">
+        <div id="text">Text</div>
+        <div id="author">Author</div>
+      </div>
+    );
   }
 }
 
