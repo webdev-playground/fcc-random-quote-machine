@@ -74,12 +74,17 @@ class QuoteBox extends React.Component {
         author: 'Earl Nightingale',
       },
     };
+    this.changeQuote = this.changeQuote.bind(this);
+    this.getNewQuote = this.getNewQuote.bind(this);
   }
 
   changeQuote() {
     const newQuote = this.getNewQuote(this.state.quotes);
     this.setState({
-      currQuote: newQuote,
+      currQuote: {
+        text: newQuote.quote,
+        author: newQuote.author,
+      },
     });
   }
 
@@ -98,6 +103,7 @@ class QuoteBox extends React.Component {
         <Actions
           author={this.state.currQuote.author}
           text={this.state.currQuote.text}
+          changeQuote={this.changeQuote}
         />
       </div>
     );
@@ -123,6 +129,7 @@ class Actions extends React.Component {
     const author = this.props.author || '';
     const text = this.props.text || '';
     const tweetLink = `https://twitter.com/intent/tweet?text="${text}" ${author}`;
+    const changeQuote = this.props.changeQuote;
 
     return (
       <div id="actions">
@@ -136,7 +143,11 @@ class Actions extends React.Component {
             Tweet
           </a>
         </div>
-        <div id="new-quote">New Quote</div>
+        <div id="quote-button">
+          <button id="new-quote" onClick={changeQuote}>
+            New Quote
+          </button>
+        </div>
       </div>
     );
   }
