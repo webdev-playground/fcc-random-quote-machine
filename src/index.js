@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -133,6 +134,11 @@ Quote.defaultProps = {
   author: '',
 };
 
+Quote.propTypes = {
+  text: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+};
+
 class Actions extends React.Component {
   render() {
     const author = this.props.author;
@@ -166,6 +172,12 @@ Actions.defaultProps = {
   author: '',
   text: '',
   changeQuote: function() {},
+};
+
+Actions.propTypes = {
+  author: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  changeQuote: PropTypes.func.isRequired,
 };
 
 ReactDOM.render(<QuoteBox />, document.getElementById('root'));
