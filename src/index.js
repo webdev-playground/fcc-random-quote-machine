@@ -92,6 +92,7 @@ class QuoteBox extends React.Component {
     return (
       <div id="quote-box">
         <Quote />
+        <Actions />
       </div>
     );
   }
@@ -103,6 +104,28 @@ class Quote extends React.Component {
       <div id="quote">
         <div id="text">Text</div>
         <div id="author">Author</div>
+      </div>
+    );
+  }
+}
+
+class Actions extends React.Component {
+  render() {
+    const tweetLink =
+      'https://twitter.com/intent/tweet?text="We become what we think about." Earl Nightingale';
+    return (
+      <div id="actions">
+        <div id="tweet">
+          <a
+            id="tweet-quote"
+            href={tweetLink}
+            target="_blank"
+            rel="noopener noreferrer" // security reasons: https://mathiasbynens.github.io/rel-noopener/
+          >
+            Tweet
+          </a>
+        </div>
+        <div id="new-quote">New Quote</div>
       </div>
     );
   }
