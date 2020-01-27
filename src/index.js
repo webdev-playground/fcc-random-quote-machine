@@ -100,7 +100,7 @@ class QuoteBox extends React.Component {
 
   render() {
     return (
-      <div id="quote-box">
+      <div id="quote-box" className="container">
         <Quote
           author={this.state.currQuote.author}
           text={this.state.currQuote.text}
@@ -122,8 +122,15 @@ class Quote extends React.Component {
 
     return (
       <div id="quote">
-        <div id="text">{text}</div>
-        <div id="author">{author}</div>
+        <div id="text">
+          <h1>
+            <i className="fa fa-quote-left"></i>
+            {text}
+          </h1>
+        </div>
+        <div id="author">
+          <p>- {author}</p>
+        </div>
       </div>
     );
   }
@@ -148,20 +155,28 @@ class Actions extends React.Component {
 
     return (
       <div id="actions">
-        <div id="tweet">
-          <a
-            id="tweet-quote"
-            href={tweetLink}
-            target="_blank"
-            rel="noopener noreferrer" // security reasons: https://mathiasbynens.github.io/rel-noopener/
-          >
-            Tweet
-          </a>
-        </div>
-        <div id="quote-button">
-          <button id="new-quote" onClick={changeQuote}>
-            New Quote
-          </button>
+        <div className="row">
+          <div id="tweet" className="col-auto mr-auto">
+            <a
+              id="tweet-quote"
+              href={tweetLink}
+              target="_blank"
+              rel="noopener noreferrer" // security reasons: https://mathiasbynens.github.io/rel-noopener/
+            >
+              <button className="btn btn-primary">
+                <i class="fa fa-twitter"></i>
+              </button>
+            </a>
+          </div>
+          <div id="quote-button" className="col-auto">
+            <button
+              id="new-quote"
+              onClick={changeQuote}
+              className="btn btn-primary"
+            >
+              New quote
+            </button>
+          </div>
         </div>
       </div>
     );
