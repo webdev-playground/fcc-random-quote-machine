@@ -112,6 +112,7 @@ class QuoteBox extends React.Component {
       Math.floor(Math.random() * this.state.colors.length)
     ];
     document.body.style.background = newColor;
+    this.setState({ colorTheme: newColor });
   }
 
   getNewQuote() {
@@ -129,11 +130,13 @@ class QuoteBox extends React.Component {
         <Quote
           author={this.state.currQuote.author}
           text={this.state.currQuote.text}
+          colorTheme={this.state.colorTheme}
         />
         <Actions
           author={this.state.currQuote.author}
           text={this.state.currQuote.text}
           changeQuote={this.changeQuote}
+          colorTheme={this.state.colorTheme}
         />
       </div>
     );
@@ -148,12 +151,12 @@ class Quote extends React.Component {
     return (
       <div id="quote">
         <div id="text">
-          <h1>
+          <h1 style={{ color: this.props.colorTheme }}>
             <i className="fa fa-quote-left"></i>
             {text}
           </h1>
         </div>
-        <div id="author">
+        <div id="author" style={{ color: this.props.colorTheme }}>
           <p>- {author}</p>
         </div>
       </div>
@@ -164,11 +167,13 @@ class Quote extends React.Component {
 Quote.defaultProps = {
   text: '',
   author: '',
+  colorTheme: '',
 };
 
 Quote.propTypes = {
   text: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  colorTheme: PropTypes.string,
 };
 
 class Actions extends React.Component {
@@ -188,7 +193,13 @@ class Actions extends React.Component {
               target="_blank"
               rel="noopener noreferrer" // security reasons: https://mathiasbynens.github.io/rel-noopener/
             >
-              <button className="btn btn-primary">
+              <button
+                className="btn btn-primary"
+                style={{
+                  background: this.props.colorTheme,
+                  borderColor: this.props.colorTheme,
+                }}
+              >
                 <i class="fa fa-twitter"></i>
               </button>
             </a>
@@ -198,6 +209,10 @@ class Actions extends React.Component {
               id="new-quote"
               onClick={changeQuote}
               className="btn btn-primary"
+              style={{
+                backgroundColor: this.props.colorTheme,
+                borderColor: this.props.colorTheme,
+              }}
             >
               New quote
             </button>
@@ -212,12 +227,14 @@ Actions.defaultProps = {
   author: '',
   text: '',
   changeQuote: function() {},
+  colorTheme: '',
 };
 
 Actions.propTypes = {
   author: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   changeQuote: PropTypes.func.isRequired,
+  colorTheme: PropTypes.string,
 };
 
 ReactDOM.render(<QuoteBox />, document.getElementById('root'));
