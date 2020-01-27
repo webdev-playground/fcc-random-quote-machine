@@ -93,6 +93,10 @@ class QuoteBox extends React.Component {
     return this.state.quotes[idx];
   }
 
+  componentDidMount() {
+    this.changeQuote();
+  }
+
   render() {
     return (
       <div id="quote-box">
