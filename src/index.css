@@ -39,6 +39,7 @@ h1 i {
 
 #quote-box {
   padding: 40px 50px;
-  width: 500px;
+  width: 550px;
   border-radius: 3px;
+  background: white;
 }
