@@ -116,8 +116,8 @@ class QuoteBox extends React.Component {
 
 class Quote extends React.Component {
   render() {
-    const text = this.props.text || '';
-    const author = this.props.author || '';
+    const text = this.props.text;
+    const author = this.props.author;
 
     return (
       <div id="quote">
@@ -128,10 +128,15 @@ class Quote extends React.Component {
   }
 }
 
+Quote.defaultProps = {
+  text: '',
+  author: '',
+};
+
 class Actions extends React.Component {
   render() {
-    const author = this.props.author || '';
-    const text = this.props.text || '';
+    const author = this.props.author;
+    const text = this.props.text;
     const tweetLink = `https://twitter.com/intent/tweet?text="${text}" ${author}`;
     const changeQuote = this.props.changeQuote;
 
@@ -156,5 +161,11 @@ class Actions extends React.Component {
     );
   }
 }
+
+Actions.defaultProps = {
+  author: '',
+  text: '',
+  changeQuote: function() {},
+};
 
 ReactDOM.render(<QuoteBox />, document.getElementById('root'));
